@@ -17,6 +17,9 @@ public class DrawRectangleCommand implements Command {
 
     @Override
     public boolean canExecute(String input) {
+        if (input == null) {
+            return false;
+        }
         return PATTERN.matcher(input).matches();
     }
 
@@ -26,8 +29,8 @@ public class DrawRectangleCommand implements Command {
         if (matcher.find()) {
             int x1 = Integer.valueOf(matcher.group(1));
             int y1 = Integer.valueOf(matcher.group(2));
-            int x2 = Integer.valueOf(matcher.group(1));
-            int y2 = Integer.valueOf(matcher.group(2));
+            int x2 = Integer.valueOf(matcher.group(3));
+            int y2 = Integer.valueOf(matcher.group(4));
             controller.drawRectangle(x1, y1, x2, y2);
         }
         return KEEP_RUNNING;

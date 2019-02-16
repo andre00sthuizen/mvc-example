@@ -17,6 +17,9 @@ public class CreateCommand implements Command {
 
     @Override
     public boolean canExecute(String input) {
+        if (input == null) {
+            return false;
+        }
         return PATTERN.matcher(input).matches();
     }
 

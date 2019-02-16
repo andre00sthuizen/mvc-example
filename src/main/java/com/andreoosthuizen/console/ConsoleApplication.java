@@ -4,24 +4,27 @@ import com.andreoosthuizen.controller.Controller;
 import com.andreoosthuizen.model.Canvas;
 import com.andreoosthuizen.view.ConsoleView;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleApplication implements Runnable {
 
-    /**
-     * TODO Test coverage
-     * TODO Dependency injection
-     */
+    private OutputStream outputStream = System.out;
+    private InputStream inputStream = System.in;
+
     @Override
     public void run() {
         Controller controller = new Controller(new ConsoleView(), new Canvas());
         List<Command> availableCommands = getAvailableCommands(controller);
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(inputStream);
+        PrintStream printStream = new PrintStream(outputStream);
         boolean run = true;
         while (run) {
-            System.out.print("enter command: ");
+            printStream.print("enter command: ");
             String input = scanner.nextLine();
             Command command = getCommand(input, availableCommands);
             if (command != null) {
@@ -29,10 +32,9 @@ public class ConsoleApplication implements Runnable {
             } else {
                 printHelpMessage();
             }
-            System.out.println();
+            printStream.println();
         }
     }
-
 
     private List<Command> getAvailableCommands(Controller controller) {
         List<Command> availableCommands = new ArrayList<>(4);
@@ -53,7 +55,8 @@ public class ConsoleApplication implements Runnable {
     }
 
     private void printHelpMessage() {
-        System.out.println("Invalid input, valid options are:\n" +
+        PrintStream printStream = new PrintStream(outputStream);
+        printStream.println("Invalid input, valid options are:\n" +
                 "C w h           Should create a new canvas of width w and height h.\n" +
                 "L x1 y1 x2 y2   Should create a new line from (x1,y1) to (x2,y2). Currently only\n" +
                 "                horizontal or vertical lines are supported. Horizontal and vertical lines\n" +
@@ -67,5 +70,20 @@ public class ConsoleApplication implements Runnable {
                 "Q               Should quit the program.\n");
     }
 
+    OutputStream getOutputStream() {
+        return outputStream;
+    }
+
+    void setOutputStream(OutputStream outputStream) {
+        this.outputStream = outputStream;
+    }
+
+    InputStream getInputStream() {
+        return inputStream;
+    }
+
+    void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
+    }
 
 }
