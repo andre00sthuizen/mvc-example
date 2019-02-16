@@ -44,4 +44,16 @@ public class ConsoleViewTest {
         assertEquals("X\n", outputStream.toString());
     }
 
+    @Test
+    void should_RenderCorrectOrientation_When_Given3By2Raster() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ConsoleView consoleView = new ConsoleView();
+        consoleView.setOutputStream(outputStream);
+        Raster raster = new Raster(3, 2);
+        raster.setPixel(0, 0, 'X');
+        raster.setPixel(2, 1, 'X');
+        consoleView.render(raster);
+        assertEquals("X  \n  X\n", outputStream.toString());
+    }
+
 }

@@ -81,4 +81,10 @@ public class RasterTest {
         assertEquals('X', raster.getPixels()[0][9]);
     }
 
+    @Test
+    void should_ReturnSpaceChar_When_SetPixelAt1By1Raster() {
+        Raster raster = new Raster(1, 1);
+        assertEquals(' ', raster.getPixels()[0][0]);
+    }
+
 }

@@ -28,6 +28,24 @@ public class Canvas implements Drawable {
     private int width = 10;
     private int height = 10;
 
+    @Override
+    public Raster paint() {
+        int width = getWidth() + 2;
+        int height = getHeight() + 2;
+        Raster raster = new Raster(width, height);
+        //Paint top and bottom rows
+        for (int i=0; i<width; i++) {
+            raster.setPixel(i, 0, '-');
+            raster.setPixel(i, height - 1, '-');
+        }
+        //Paint left and right cols
+        for (int j=1; j<height -1; j++) {
+            raster.setPixel(0, j, '|');
+            raster.setPixel(width-1, j, '|');
+        }
+        return raster;
+    }
+
     public int getWidth() {
         return width;
     }
@@ -47,25 +65,6 @@ public class Canvas implements Drawable {
 
     public void addPropertyChangeListener(PropertyChangeListener changeListener) {
         this.propertyChanges.addPropertyChangeListener(changeListener);
-    }
-
-    @Override
-    public Raster paint() {
-        int width = getWidth() + 2;
-        int height = getHeight() + 2;
-        Raster raster = new Raster(width, height);
-        char[][] pixels = raster.getPixels();
-        //Paint top and bottom rows
-        for (int i=0; i<width; i++) {
-            raster.setPixel(i, 0, '-');
-            raster.setPixel(i, height - 1, '-');
-        }
-        //Paint left and right cols
-        for (int j=1; j<height -1; j++) {
-            raster.setPixel(0, j, '|');
-            raster.setPixel(width-1, j, '|');
-        }
-        return raster;
     }
 
     PropertyChangeListener[] getPropertyChangeListeners() {
