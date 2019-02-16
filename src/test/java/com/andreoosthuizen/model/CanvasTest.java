@@ -134,20 +134,9 @@ public class CanvasTest {
     void should_FirePropertyChangeEventOnce_When_Resize() {
         Canvas canvas = new Canvas();
         PropertyChangeListener changeListener = mock(PropertyChangeListener.class);
+        canvas.addPropertyChangeListener(changeListener);
         canvas.resize(1, 1);
         verify(changeListener, times(1)).propertyChange(any(PropertyChangeEvent.class));
-    }
-
-    @Test
-    void should_FirePropertyChangeEventWithOldAndNewDimensions_When_Resize() {
-        Canvas canvas = new Canvas();
-        PropertyChangeListener changeListener = new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-                assertEquals(new int[] {10, 10}, propertyChangeEvent.getOldValue());
-            }
-        };
-        canvas.resize(1, 1);
     }
 
 }

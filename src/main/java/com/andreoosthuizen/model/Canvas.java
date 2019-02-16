@@ -40,15 +40,13 @@ public class Canvas implements Drawable {
         if (width < 0 || height < 0) {
             throw new IllegalArgumentException("Canvas width/height must not be less than zero");
         }
-        int oldWidth = this.width;
-        int oldHeight = this.height;
         this.width = width;
         this.height = height;
-        propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "resize", new int[] {oldWidth, oldHeight}, new int[] {width, height}));
+        this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "resize",null , paint()));
     }
 
     public void addPropertyChangeListener(PropertyChangeListener changeListener) {
-        propertyChanges.addPropertyChangeListener(changeListener);
+        this.propertyChanges.addPropertyChangeListener(changeListener);
     }
 
     @Override

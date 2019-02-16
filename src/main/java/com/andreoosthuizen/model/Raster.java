@@ -28,4 +28,5 @@ public class Raster {
     public void setPixel(int x, int y, char c) {
         pixels[x][y] = c;
     }
+
 }
