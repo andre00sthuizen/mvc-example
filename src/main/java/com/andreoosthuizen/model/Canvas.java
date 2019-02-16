@@ -3,7 +3,6 @@ package com.andreoosthuizen.model;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.List;
 
 /**
  * Draws a framed rectangular shape with borders as indicated below
@@ -18,7 +17,7 @@ import java.util.List;
  * </pre>
  *
  * The width and height default to 10.
- * Call resize(int width, int height) to change it.
+ * Call resize(int wid th, int height) to change it.
  *
  * @author Andre Oosthuizen
  */
