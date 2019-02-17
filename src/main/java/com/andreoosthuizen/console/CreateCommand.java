@@ -5,6 +5,13 @@ import com.andreoosthuizen.controller.Controller;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Creates a new Canvas according to the dimensions provided.
+ * The input string should be in the following format: "C w h" where w and h are integer values are not less than zero.
+ * e.g. C 1 2
+ *
+ * @author Andre Oosthuizen
+ */
 public class CreateCommand implements Command {
 
     private static final Pattern PATTERN = Pattern.compile("C\\s(\\d+)\\s(\\d+)");

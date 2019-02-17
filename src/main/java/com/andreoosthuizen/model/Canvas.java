@@ -17,49 +17,55 @@ import java.beans.PropertyChangeSupport;
  * </pre>
  *
  * The width and height default to 10.
- * Call resize(int wid th, int height) to change it.
+ * Call initialise(int width, int height) to change it.
  *
  * @author Andre Oosthuizen
  */
 public class Canvas implements Drawable {
 
     private PropertyChangeSupport propertyChanges = new PropertyChangeSupport(this);
-    private int width = 10;
-    private int height = 10;
+    private Raster raster;
 
     @Override
-    public Raster paint() {
-        int width = getWidth() + 2;
-        int height = getHeight() + 2;
-        Raster raster = new Raster(width, height);
+    public void paint(Raster raster) {
         //Paint top and bottom rows
-        for (int i=0; i<width; i++) {
+        for (int i=0; i<raster.getWidth(); i++) {
             raster.setPixel(i, 0, '-');
-            raster.setPixel(i, height - 1, '-');
+            raster.setPixel(i, raster.getHeight() - 1, '-');
         }
         //Paint left and right cols
-        for (int j=1; j<height -1; j++) {
+        for (int j=1; j<raster.getHeight() -1; j++) {
             raster.setPixel(0, j, '|');
-            raster.setPixel(width-1, j, '|');
+            raster.setPixel(raster.getWidth() - 1, j, '|');
         }
-        return raster;
     }
 
     public int getWidth() {
-        return width;
+        if (raster == null) {
+            return 0;
+        }
+        return raster.getWidth() - 2;
     }
 
     public int getHeight() {
-        return height;
+        if (raster == null) {
+            return 0;
+        }
+        return raster.getHeight() - 2;
     }
 
-    public void resize(int width, int height) {
+    public void initialise(int width, int height) {
         if (width < 0 || height < 0) {
             throw new IllegalArgumentException("Canvas width/height must not be less than zero");
         }
-        this.width = width;
-        this.height = height;
-        this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "resize",null , paint()));
+        this.raster = new Raster(width + 2, height + 2);
+        paint(this.raster);
+        this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "raster",null, this.raster));
+    }
+
+    public void paintDrawable(Drawable drawable) {
+        drawable.paint(this.raster);
+        this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "raster",null, this.raster));
     }
 
     public void addPropertyChangeListener(PropertyChangeListener changeListener) {
@@ -68,6 +74,10 @@ public class Canvas implements Drawable {
 
     PropertyChangeListener[] getPropertyChangeListeners() {
         return propertyChanges.getPropertyChangeListeners();
+    }
+
+    Raster getRaster() {
+        return raster;
     }
 
 }

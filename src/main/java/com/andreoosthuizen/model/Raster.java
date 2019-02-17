@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * A 2D array structure where each element represents a pixel as a char
- * An empty pixel is a space char \u0012
+ * An empty pixel is a space char ' '
  * A Raster must be constructed with a width and height > 0 otherwise an IllegalArgumentException will be thrown
  *
  * @author Andre Oosthuizen
@@ -26,8 +26,16 @@ public class Raster {
             Arrays.fill(row, SPACE);
     }
 
-    public char[][] getPixels() {
-        return pixels;
+    public int getWidth() {
+        return pixels.length;
+    }
+
+    public int getHeight() {
+        return pixels[0].length;
+    }
+
+    public char getPixel(int x, int y) {
+        return pixels[x][y];
     }
 
     public void setPixel(int x, int y, char c) {

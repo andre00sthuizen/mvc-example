@@ -2,6 +2,12 @@ package com.andreoosthuizen.console;
 
 import java.util.regex.Pattern;
 
+/**
+ * Terminates the application.
+ * We simply return false after completing the execute method
+ *
+ * @author Andre Oosthuizen
+ */
 public class QuitCommand implements Command {
 
     private static final Pattern PATTERN = Pattern.compile("Q");

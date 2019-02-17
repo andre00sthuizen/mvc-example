@@ -1,6 +1,7 @@
 package com.andreoosthuizen.console;
 
 import com.andreoosthuizen.controller.Controller;
+import com.andreoosthuizen.model.Line;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -53,11 +54,18 @@ class DrawSquareCommandTest {
     }
 
     @Test
-    void should_InvokeController_When_ExecuteWithInput() {
+    void should_InvokeControllerWith4LineDrawables_When_ExecuteWithInput() {
         Controller controller = mock(Controller.class);
         DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(controller);
         assertTrue(drawRectangleCommand.execute("R 1 2 3 4"));
-        verify(controller, times(1)).drawRectangle(1, 2, 3, 4);
+        Line top = new Line(1, 2, 3, 2, 'x');
+        verify(controller, times(1)).paintDrawable(top);
+        Line bottom = new Line(1, 4, 3, 4, 'x');
+        verify(controller, times(1)).paintDrawable(bottom);
+        Line left = new Line(1, 2, 1, 4, 'x');
+        verify(controller, times(1)).paintDrawable(left);
+        Line right = new Line(3, 2, 3, 4, 'x');
+        verify(controller, times(1)).paintDrawable(right);
     }
 
 }

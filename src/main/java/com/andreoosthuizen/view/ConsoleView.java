@@ -20,11 +20,10 @@ public class ConsoleView implements View {
             throw new IllegalArgumentException("Raster input must not be null");
         }
         PrintWriter printWriter = new PrintWriter(outputStream, true);
-        char[][] pixels = raster.getPixels();
-        for (int j=0; j<pixels[0].length; j++) {
-            StringBuilder row = new StringBuilder(pixels[0].length);
-            for (int i=0; i<pixels.length; i++) {
-                row.append(pixels[i][j]);
+        for (int j=0; j<raster.getHeight(); j++) {
+            StringBuilder row = new StringBuilder(raster.getHeight());
+            for (int i=0; i<raster.getWidth(); i++) {
+                row.append(raster.getPixel(i, j));
             }
             printWriter.println(row);
         }

@@ -1,6 +1,7 @@
 package com.andreoosthuizen.controller;
 
 import com.andreoosthuizen.model.Canvas;
+import com.andreoosthuizen.model.Drawable;
 import com.andreoosthuizen.model.Raster;
 import com.andreoosthuizen.view.View;
 
@@ -23,15 +24,11 @@ public class Controller implements PropertyChangeListener {
     }
 
     public void createCanvas(int width, int height) {
-        canvas.resize(width, height);
+        canvas.initialise(width, height);
     }
 
-    public void drawCorner(int x1, int y1, int x2, int y2) {
-        //TODO
-    }
-
-    public void drawRectangle(int x1, int y1, int x2, int y2) {
-        //TODO
+    public void paintDrawable(Drawable drawable) {
+        canvas.paintDrawable(drawable);
     }
 
     @Override

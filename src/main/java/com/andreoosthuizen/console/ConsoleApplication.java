@@ -39,7 +39,7 @@ public class ConsoleApplication implements Runnable {
     private List<Command> getAvailableCommands(Controller controller) {
         List<Command> availableCommands = new ArrayList<>(4);
         availableCommands.add(new CreateCommand(controller));
-        availableCommands.add(new DrawCornerCommand(controller));
+        availableCommands.add(new DrawLineCommand(controller));
         availableCommands.add(new DrawRectangleCommand(controller));
         availableCommands.add(new QuitCommand());
         return availableCommands;

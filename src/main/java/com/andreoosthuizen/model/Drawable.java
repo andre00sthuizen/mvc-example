@@ -2,6 +2,6 @@ package com.andreoosthuizen.model;
 
 public interface Drawable {
 
-    Raster paint();
+    void paint(Raster raster);
 
 }

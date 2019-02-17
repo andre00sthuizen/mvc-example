@@ -14,105 +14,86 @@ import static org.mockito.Mockito.*;
 
 public class CanvasTest {
 
+
     @Test
-    void should_DefaultWidthTo10_When_CreatedWithoutWidth() {
+    void should_DefaultHeightTo0_When_CreatedWithoutInitialise() {
         Canvas canvas = new Canvas();
-        assertEquals(10, canvas.getWidth());
+        assertEquals(0, canvas.getHeight());
     }
 
     @Test
-    void should_DefaultHeightTo10_When_CreatedWithoutHeight() {
+    void should_DefaultWidthTo0_When_CreatedWithoutInitialise() {
         Canvas canvas = new Canvas();
-        assertEquals(10, canvas.getHeight());
+        assertEquals(0, canvas.getWidth());
     }
 
     @Test
-    void should_ReturnWidth2AndHeight2_When_ResizedToZeroDimensions() {
+    void should_ReturnWidth0AndHeight0_When_IntialiseToZeroDimensions() {
         Canvas canvas = new Canvas();
-        canvas.resize(0, 0);
+        canvas.initialise(0, 0);
         assertEquals(0, canvas.getWidth());
         assertEquals(0, canvas.getHeight());
     }
 
     @Test
-    void should_ReturnUpdatedWidthAndHeight_When_ResizedToPositiveDimensions() {
+    void should_ReturnUpdatedWidthAndHeight_When_IntialiseToPositiveDimensions() {
         Canvas canvas = new Canvas();
-        canvas.resize(15, 30);
+        canvas.initialise(15, 30);
         assertEquals(15, canvas.getWidth());
         assertEquals(30, canvas.getHeight());
     }
 
     @ParameterizedTest
     @CsvSource({ "-1,1", "1,-1", "-1,-1"})
-    void should_ThrowIllegalArgumentException_When_ResizedToZeroOrLessDimensions(int width, int height) {
+    void should_ThrowIllegalArgumentException_When_IntialiseToZeroOrLessDimensions(int width, int height) {
         Canvas canvas = new Canvas();
         assertThrows(IllegalArgumentException.class, () -> {
-            canvas.resize(width, height);
+            canvas.initialise(width, height);
         }, "Expected IllegalArgumentException resizing to negative dimensions");
     }
 
     @Test
-    void should_Return12By12Array_When_PaintWithoutResize() {
+    void should_CreateRasterWithFrameWidthsIncluded_When_InitialiseWithValidDimensions() {
         Canvas canvas = new Canvas();
-        Raster raster = canvas.paint();
-        for (int i=0; i<12; i++) {
-            assertEquals(12, raster.getPixels()[i].length);
-        }
-    }
-
-    @Test
-    void should_Return2By2Raster_When_PaintWithZeroResize() {
-        Canvas canvas = new Canvas();
-        canvas.resize(0, 0);
-        Raster raster = canvas.paint();
-        for (int i=0; i<2; i++) {
-            assertEquals(2, raster.getPixels()[i].length);
-        }
-    }
-
-    @Test
-    void should_ReturnRaster_When_PaintWithPositiveResize() {
-        Canvas canvas = new Canvas();
-        canvas.resize(7, 13);
-        Raster raster = canvas.paint();
-        for (int i=0; i<9; i++) {
-            assertEquals(15, raster.getPixels()[i].length);
-        }
+        canvas.initialise(7, 13);
+        assertEquals(9, canvas.getRaster().getWidth());
+        assertEquals(15, canvas.getRaster().getHeight());
     }
 
     @Test
     void should_PaintTopBorderWithDash_When_Paint() {
         Canvas canvas = new Canvas();
-        Raster raster = canvas.paint();
+        canvas.initialise(10, 10);
         for (int i=0; i<12; i++) {
-            assertEquals('-', raster.getPixels()[i][0]);
+            assertEquals('-', canvas.getRaster().getPixel(i, 0));
         }
     }
 
     @Test
     void should_PaintBottomBorderWithDash_When_Paint() {
         Canvas canvas = new Canvas();
-        Raster raster = canvas.paint();
+        canvas.initialise(10, 10);
         for (int i=0; i<12; i++) {
-            assertEquals('-', raster.getPixels()[i][11]);
+            assertEquals('-', canvas.getRaster().getPixel(i, 11));
         }
     }
 
     @Test
     void should_PaintLeftBorderWithPipe_When_Paint() {
         Canvas canvas = new Canvas();
-        Raster raster = canvas.paint();
+        canvas.initialise(10, 10);
         for (int j=1; j<11; j++) {
-            assertEquals('|', raster.getPixels()[0][j]);
+            assertEquals('|', canvas.getRaster().getPixel(0, j));
         }
     }
 
     @Test
     void should_PaintRightBorderWithPipe_When_Paint() {
         Canvas canvas = new Canvas();
-        Raster raster = canvas.paint();
+        canvas.initialise(10, 10);
+        canvas.initialise(10, 10);
         for (int j=1; j<11; j++) {
-            assertEquals('|', raster.getPixels()[11][j]);
+            assertEquals('|', canvas.getRaster().getPixel(11, j));
         }
     }
 
@@ -131,11 +112,11 @@ public class CanvasTest {
     }
 
     @Test
-    void should_FirePropertyChangeEventOnce_When_Resize() {
+    void should_FirePropertyChangeEventOnce_When_Initialise() {
         Canvas canvas = new Canvas();
         PropertyChangeListener changeListener = mock(PropertyChangeListener.class);
         canvas.addPropertyChangeListener(changeListener);
-        canvas.resize(1, 1);
+        canvas.initialise(1, 1);
         verify(changeListener, times(1)).propertyChange(any(PropertyChangeEvent.class));
     }
 

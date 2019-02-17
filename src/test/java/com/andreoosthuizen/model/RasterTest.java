@@ -71,20 +71,20 @@ public class RasterTest {
     void should_ReturnAssingedChar_When_SetPixelAt1By1Raster() {
         Raster raster = new Raster(1, 1);
         raster.setPixel(0, 0, 'X');
-        assertEquals('X', raster.getPixels()[0][0]);
+        assertEquals('X', raster.getPixel(0, 0));
     }
 
     @Test
     void should_ReturnAssingedChar_When_SetPixelAt10By10() {
         Raster raster = new Raster(10, 10);
         raster.setPixel(0, 9, 'X');
-        assertEquals('X', raster.getPixels()[0][9]);
+        assertEquals('X', raster.getPixel(0, 9));
     }
 
     @Test
     void should_ReturnSpaceChar_When_SetPixelAt1By1Raster() {
         Raster raster = new Raster(1, 1);
-        assertEquals(' ', raster.getPixels()[0][0]);
+        assertEquals(' ', raster.getPixel(0, 0));
     }
 
 }

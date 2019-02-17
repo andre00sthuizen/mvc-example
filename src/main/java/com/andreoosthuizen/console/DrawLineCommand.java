@@ -1,17 +1,24 @@
 package com.andreoosthuizen.console;
 
 import com.andreoosthuizen.controller.Controller;
+import com.andreoosthuizen.model.Line;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DrawCornerCommand implements Command {
+/**
+ * Draws either a vertical or horizontal line from (x1,y1) to (x2,y2)
+ *
+ * @author Andre Oosthuizen
+ */
+public class DrawLineCommand implements Command {
 
     private static final Pattern PATTERN = Pattern.compile("L\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d+)");
+    private static final char DRAW_CHARACTER = 'x';
     private static final boolean KEEP_RUNNING = true;
     private Controller controller;
 
-    public DrawCornerCommand(Controller controller) {
+    public DrawLineCommand(Controller controller) {
         this.controller = controller;
     }
 
@@ -31,7 +38,8 @@ public class DrawCornerCommand implements Command {
             int y1 = Integer.valueOf(matcher.group(2));
             int x2 = Integer.valueOf(matcher.group(3));
             int y2 = Integer.valueOf(matcher.group(4));
-            controller.drawCorner(x1, y1, x2, y2);
+            Line line = new Line(x1, y1, x2, y2, DRAW_CHARACTER);
+            controller.paintDrawable(line);
         }
         return KEEP_RUNNING;
     }
