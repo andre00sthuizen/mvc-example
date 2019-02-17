@@ -23,8 +23,9 @@ import java.beans.PropertyChangeSupport;
  */
 public class CanvasDefault implements Canvas, Drawable {
 
-    private PropertyChangeSupport propertyChanges = new PropertyChangeSupport(this);
     private Raster raster;
+    private PropertyChangeSupport propertyChanges = new PropertyChangeSupport(this);
+
 
     @Override
     public void initialise(int width, int height) {
@@ -50,20 +51,6 @@ public class CanvasDefault implements Canvas, Drawable {
         }
     }
 
-    public int getWidth() {
-        if (raster == null) {
-            return 0;
-        }
-        return raster.getWidth() - 2;
-    }
-
-    public int getHeight() {
-        if (raster == null) {
-            return 0;
-        }
-        return raster.getHeight() - 2;
-    }
-
     @Override
     public Raster getRaster() {
         return raster;
@@ -82,6 +69,20 @@ public class CanvasDefault implements Canvas, Drawable {
     @Override
     public void addPropertyChangeListener(PropertyChangeListener changeListener) {
         this.propertyChanges.addPropertyChangeListener(changeListener);
+    }
+
+    public int getWidth() {
+        if (raster == null) {
+            return 0;
+        }
+        return raster.getWidth() - 2;
+    }
+
+    public int getHeight() {
+        if (raster == null) {
+            return 0;
+        }
+        return raster.getHeight() - 2;
     }
 
     PropertyChangeListener[] getPropertyChangeListeners() {
