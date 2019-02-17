@@ -19,11 +19,6 @@ public class CreateCommand implements Command {
     private Controller controller;
 
     @Override
-    public void init(Controller controller) {
-        this.controller = controller;
-    }
-
-    @Override
     public boolean canExecute(String input) {
         if (input == null) {
             return false;
@@ -32,7 +27,7 @@ public class CreateCommand implements Command {
     }
 
     @Override
-    public boolean execute(String input) {
+    public boolean execute(String input, Controller controller) {
         Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
             int width = Integer.valueOf(matcher.group(1));

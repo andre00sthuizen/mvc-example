@@ -26,7 +26,7 @@ class FillCommandTest {
     @Test
     void should_ReturnTrue_When_WrongInputExecuted() {
         FillCommand fillCommand = new FillCommand();
-        assertTrue(fillCommand.execute("invalid"));
+        assertTrue(fillCommand.execute("invalid", null));
     }
 
     @Test
@@ -57,8 +57,7 @@ class FillCommandTest {
     void should_InvokeControllerWithLineDrawable_When_ExecuteWithInput() {
         Controller controller = mock(DefaultController.class);
         FillCommand fillCommand = new FillCommand();
-        fillCommand.init(controller);
-        assertTrue(fillCommand.execute("B 1 2 o"));
+        assertTrue(fillCommand.execute("B 1 2 o", controller));
         Fill fill = new Fill(1, 2, 'o');
         verify(controller, times(1)).draw(fill);
     }

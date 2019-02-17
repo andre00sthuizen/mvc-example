@@ -28,7 +28,7 @@ class QuitCommandTest {
     @Test
     void should_ReturnFalse_When_ExecuteWithInput() {
         QuitCommand quitCommand = new QuitCommand();
-        assertFalse(quitCommand.execute("Q"));
+        assertFalse(quitCommand.execute("Q", null));
     }
 
 }

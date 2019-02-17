@@ -17,11 +17,6 @@ public class QuitCommand implements Command {
     private static final boolean STOP_RUNNING = false;
 
     @Override
-    public void init(Controller controller) {
-
-    }
-
-    @Override
     public boolean canExecute(String input) {
         if (input == null) {
             return false;
@@ -30,7 +25,7 @@ public class QuitCommand implements Command {
     }
 
     @Override
-    public boolean execute(String input) {
+    public boolean execute(String input, Controller controller) {
         return STOP_RUNNING;
     }
 

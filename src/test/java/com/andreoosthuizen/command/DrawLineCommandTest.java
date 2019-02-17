@@ -26,7 +26,7 @@ class DrawLineCommandTest {
     @Test
     void should_ReturnTrue_When_WrongInputExecuted() {
         DrawLineCommand drawLineCommand = new DrawLineCommand();
-        assertTrue(drawLineCommand.execute("invalid"));
+        assertTrue(drawLineCommand.execute("invalid", null));
     }
 
     @Test
@@ -63,8 +63,7 @@ class DrawLineCommandTest {
     void should_InvokeControllerWithLineDrawable_When_ExecuteWithInput() {
         Controller controller = mock(DefaultController.class);
         DrawLineCommand drawLineCommand = new DrawLineCommand();
-        drawLineCommand.init(controller);
-        assertTrue(drawLineCommand.execute("L 1 2 1 5"));
+        assertTrue(drawLineCommand.execute("L 1 2 1 5", controller));
         Line line = new Line(1, 2, 1, 5, 'x');
         verify(controller, times(1)).draw(line);
     }

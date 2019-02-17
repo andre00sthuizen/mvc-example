@@ -25,7 +25,7 @@ class CreateCommandTest {
     @Test
     void should_ReturnTrue_When_WrongInputExecuted() {
         CreateCommand createCommand = new CreateCommand();
-        assertTrue(createCommand.execute("invalid"));
+        assertTrue(createCommand.execute("invalid", null));
     }
 
     @Test
@@ -50,8 +50,7 @@ class CreateCommandTest {
     void should_InvokeController_When_ExecuteWithInput() {
         Controller controller = mock(DefaultController.class);
         CreateCommand createCommand = new CreateCommand();
-        createCommand.init(controller);
-        assertTrue(createCommand.execute("C 1 1"));
+        assertTrue(createCommand.execute("C 1 1", controller));
         verify(controller, times(1)).createCanvas(1, 1);
     }
 

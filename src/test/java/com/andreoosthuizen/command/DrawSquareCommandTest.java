@@ -26,7 +26,7 @@ class DrawSquareCommandTest {
     @Test
     void should_ReturnTrue_When_WrongInputExecuted() {
         DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
-        assertTrue(drawRectangleCommand.execute("invalid"));
+        assertTrue(drawRectangleCommand.execute("invalid", null));
     }
 
     @Test
@@ -63,8 +63,7 @@ class DrawSquareCommandTest {
     void should_InvokeControllerWith4LineDrawables_When_ExecuteWithInput() {
         Controller controller = mock(DefaultController.class);
         DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
-        drawRectangleCommand.init(controller);
-        assertTrue(drawRectangleCommand.execute("R 1 2 3 4"));
+        assertTrue(drawRectangleCommand.execute("R 1 2 3 4", controller));
         Line top = new Line(1, 2, 3, 2, 'x');
         Line bottom = new Line(1, 4, 3, 4, 'x');
         Line left = new Line(1, 2, 1, 4, 'x');

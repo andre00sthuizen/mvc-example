@@ -31,8 +31,7 @@ public class DrawApplication implements Runnable {
             String input = scanner.nextLine();
             Command command = CommandFactory.getInstance().getCommand(input);
             if (command != null) {
-                command.init(controller);
-                run = command.execute(input);
+                run = command.execute(input, controller);
             } else {
                 printHelpMessage();
             }

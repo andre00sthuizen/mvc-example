@@ -22,11 +22,6 @@ public class DrawRectangleCommand implements Command {
     private Controller controller;
 
     @Override
-    public void init(Controller controller) {
-        this.controller = controller;
-    }
-
-    @Override
     public boolean canExecute(String input) {
         if (input == null) {
             return false;
@@ -35,7 +30,7 @@ public class DrawRectangleCommand implements Command {
     }
 
     @Override
-    public boolean execute(String input) {
+    public boolean execute(String input, Controller controller) {
         Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
             int x1 = Integer.valueOf(matcher.group(1));

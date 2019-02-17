@@ -20,12 +20,6 @@ public class DrawLineCommand implements Command {
     private static final Pattern PATTERN = Pattern.compile("L\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d+)");
     private static final char DRAW_CHARACTER = 'x';
     private static final boolean KEEP_RUNNING = true;
-    private Controller controller;
-
-    @Override
-    public void init(Controller controller) {
-        this.controller = controller;
-    }
 
     @Override
     public boolean canExecute(String input) {
@@ -36,7 +30,7 @@ public class DrawLineCommand implements Command {
     }
 
     @Override
-    public boolean execute(String input) {
+    public boolean execute(String input, Controller controller) {
         Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
             int x1 = Integer.valueOf(matcher.group(1));

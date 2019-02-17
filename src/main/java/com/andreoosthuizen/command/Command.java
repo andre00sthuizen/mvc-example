@@ -4,8 +4,6 @@ import com.andreoosthuizen.controller.Controller;
 
 public interface Command {
 
-    void init(Controller controller);
-
     /**
      * Check if input String can be handled by this command
      * @param input
@@ -15,9 +13,9 @@ public interface Command {
 
     /**
      * Execute this command for the given input String
-     * @param input
+     * @param input and controller
      * @return true if the application should continue to run, or false to terminate
      */
-    boolean execute(String input);
+    boolean execute(String input, Controller controller);
 
 }
