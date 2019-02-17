@@ -46,15 +46,19 @@ public class Fill implements Drawable {
             if (targetCharacter == replacementCharacter) {
                 return;
             }
-            //2. Set the pixel to replacementCharacter.
+            //2. If the character of the pixel is not equal to targetCharacter, return.
+            if (raster.getPixel(x, y) != targetCharacter) {
+                return;
+            }
+            //3. Set the pixel to replacementCharacter.
             raster.setPixel(x, y, replacementCharacter);
-            //3.1 Perform Flood-fill (one step to the south of pixel, targetCharacter, replacementCharacter).
+            //4.1 Perform Flood-fill (one step to the south of pixel, targetCharacter, replacementCharacter).
             floodFill(raster, x, y -1, targetCharacter, replacementCharacter);
-            //3.2 Perform Flood-fill (one step to the north of pixel, targetCharacter, replacementCharacter).
+            //4.2 Perform Flood-fill (one step to the north of pixel, targetCharacter, replacementCharacter).
             floodFill(raster, x, y + 1, targetCharacter, replacementCharacter);
-            //3.3 Perform Flood-fill (one step to the west of pixel, targetCharacter, replacementCharacter).
+            //4.3 Perform Flood-fill (one step to the west of pixel, targetCharacter, replacementCharacter).
             floodFill(raster, x - 1, y, targetCharacter, replacementCharacter);
-            //3.4 Perform Flood-fill (one step to the east of pixel, targetCharacter, replacementCharacter).
+            //4.4 Perform Flood-fill (one step to the east of pixel, targetCharacter, replacementCharacter).
             floodFill(raster, x + 1, y, targetCharacter, replacementCharacter);
         }
         return;
