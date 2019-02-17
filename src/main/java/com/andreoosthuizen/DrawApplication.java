@@ -3,6 +3,7 @@ package com.andreoosthuizen;
 import com.andreoosthuizen.command.Command;
 import com.andreoosthuizen.command.CommandFactory;
 import com.andreoosthuizen.controller.Controller;
+import com.andreoosthuizen.controller.DefaultController;
 import com.andreoosthuizen.model.Canvas;
 import com.andreoosthuizen.view.ConsoleView;
 
@@ -21,7 +22,7 @@ public class DrawApplication implements Runnable {
 
     @Override
     public void run() {
-        Controller controller = new Controller(new ConsoleView(), new Canvas());
+        Controller controller = new DefaultController(new ConsoleView(), new Canvas());
         Scanner scanner = new Scanner(inputStream);
         PrintStream printStream = new PrintStream(outputStream);
         boolean run = true;

@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-class ControllerTest {
+class DefaultControllerTest {
 
     @Test
     void should_CallCanvasResize_When_CreateCanvasRequestedWithDimensions() {
         Canvas canvas = mock(Canvas.class);
         View view = mock(View.class);
-        Controller controller = new Controller(view, canvas);
-        controller.createCanvas(1,1);
+        DefaultController defaultController = new DefaultController(view, canvas);
+        defaultController.createCanvas(1,1);
         verify(canvas, times(1)).initialise(1,1);
     }
 
@@ -23,8 +23,8 @@ class ControllerTest {
     void should_CallViewRender_When_CreateCanvasRequestedWithDimensions() {
         Canvas canvas = new Canvas();
         View view = mock(View.class);
-        Controller controller = new Controller(view, canvas);
-        controller.createCanvas(1,1);
+        DefaultController defaultController = new DefaultController(view, canvas);
+        defaultController.createCanvas(1,1);
         verify(view, times(1)).render(any(Raster.class));
     }
 
@@ -32,9 +32,9 @@ class ControllerTest {
     void should_CallCanvasPaintDrawable_When_DrawableProvided() {
         Canvas canvas = mock(Canvas.class);
         View view = mock(View.class);
-        Controller controller = new Controller(view, canvas);
+        DefaultController defaultController = new DefaultController(view, canvas);
         Drawable drawable = mock(Drawable.class);
-        controller.draw(drawable);
+        defaultController.draw(drawable);
         verify(canvas, times(1)).draw(drawable);
     }
 

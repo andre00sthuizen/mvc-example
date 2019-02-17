@@ -1,6 +1,7 @@
 package com.andreoosthuizen.command;
 
 import com.andreoosthuizen.controller.Controller;
+import com.andreoosthuizen.controller.DefaultController;
 import com.andreoosthuizen.model.Line;
 import org.junit.jupiter.api.Test;
 
@@ -60,7 +61,7 @@ class DrawSquareCommandTest {
 
     @Test
     void should_InvokeControllerWith4LineDrawables_When_ExecuteWithInput() {
-        Controller controller = mock(Controller.class);
+        Controller controller = mock(DefaultController.class);
         DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
         drawRectangleCommand.init(controller);
         assertTrue(drawRectangleCommand.execute("R 1 2 3 4"));

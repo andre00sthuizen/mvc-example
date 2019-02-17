@@ -20,8 +20,8 @@ Test coverage reports are available in <code>${project.dir}/target/site/jacoco/i
 # Design
 The <code>Main</code> class starts a <code>ConsoleApplication</code> in a thread and listens for user input.
 The Command Pattern is used to delegate instructions to the <code>Controller</code>.
-I have used a simple MVC pattern to separate the UI concerns. The <code>Controller</code> updates the <code>Canvas</code>
-model object and listens for model updates via an Observer pattern using <code>java.beans.PropertyChangeSupport</code>
+I have used a simple MVC pattern to separate the UI concerns.
+The <code>Controller</code> updates the <code>Canvas</code> model object and listens for model updates via an Observer pattern using <code>java.beans.PropertyChangeSupport</code>
 
 # TODO
 * Adding new Command
