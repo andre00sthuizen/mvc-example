@@ -27,7 +27,20 @@ public class Line implements Drawable {
 
     @Override
     public void paint(Raster raster) {
-
+        if (y1 == y2) {
+            int i1 = Math.min(this.x1, this.x2);
+            int i2 = Math.max(this.x1, this.x2);
+            for (int i=i1; i<=i2; i++) {
+                raster.setPixel(i, y1, drawCharacter);
+            }
+        }
+        if (x1 == x2) {
+            int j1 = Math.min(this.y1, this.y2);
+            int j2 = Math.max(this.y1, this.y2);
+            for (int j=j1; j<=j2; j++) {
+                raster.setPixel(x1, j, drawCharacter);
+            }
+        }
     }
 
     @Override
@@ -45,11 +58,6 @@ public class Line implements Drawable {
     @Override
     public int hashCode() {
         return Objects.hash(x1, y1, x2, y2, drawCharacter);
-    }
-
-    @Override
-    public String toString() {
-        return "L "+x1+" "+y1+" "+x2+" "+y2+" "+drawCharacter;
     }
 
 }

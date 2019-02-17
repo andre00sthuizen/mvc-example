@@ -8,63 +8,59 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class RasterTest {
 
     @Test
-    void should_ThrowIllegalArugmentExeption_When_SetPixelWithNegativeX() {
+    void should_ThrowIllegalArugmentExeption_When_CreateWithNegativeX() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Raster(-1, 1);
         });
     }
 
     @Test
-    void should_ThrowIllegalArugmentExeption_When_SetPixelWithZeroX() {
+    void should_ThrowIllegalArugmentExeption_When_CreateWithZeroX() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Raster(0, 1);
         });
     }
 
     @Test
-    void should_ThrowIllegalArugmentExeption_When_SetPixelWithNegativeY() {
+    void should_ThrowIllegalArugmentExeption_When_CreateWithNegativeY() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Raster(1, -1);
         });
     }
 
     @Test
-    void should_ThrowIllegalArugmentExeption_When_SetPixelWithZeroY() {
+    void should_ThrowIllegalArugmentExeption_When_CreateWithZeroY() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Raster(1, 0);
         });
     }
 
     @Test
-    void should_ThrowIndexOutOfBoundsException_When_SetXLessThanZero() {
+    void should_IgnoreSetPixel_When_SetPixelXUnderRasterBounds() {
         Raster raster = new Raster(1, 1);
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            raster.setPixel(-1, 0, 'X');
-        });
+        raster.setPixel(-1, 0, 'X');
+        assertEquals(' ', raster.getPixel(0, 0));
     }
 
     @Test
-    void should_ThrowIndexOutOfBoundsException_When_SetYLessThanZero() {
+    void should_IgnoreSetPixel_When_SetPixelXOverRasterBounds() {
         Raster raster = new Raster(1, 1);
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            raster.setPixel(0, -1, 'X');
-        });
+        raster.setPixel(3, 0, 'X');
+        assertEquals(' ', raster.getPixel(0, 0));
     }
 
     @Test
-    void should_ThrowIndexOutOfBoundsException_When_SetXGreaterThanWidth() {
+    void should_IgnoreSetPixel_When_SetPixelYUnderRasterBounds() {
         Raster raster = new Raster(1, 1);
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            raster.setPixel(1, 0, 'X');
-        });
+        raster.setPixel(0, -1, 'X');
+        assertEquals(' ', raster.getPixel(0, 0));
     }
 
     @Test
-    void should_ThrowIndexOutOfBoundsException_When_SetYGreaterThanHeight() {
+    void should_IgnoreSetPixel_When_SetPixelYOverRasterBounds() {
         Raster raster = new Raster(1, 1);
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            raster.setPixel(0, 1, 'X');
-        });
+        raster.setPixel(0, 3, 'X');
+        assertEquals(' ', raster.getPixel(0, 0));
     }
 
     @Test

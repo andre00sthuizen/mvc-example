@@ -120,4 +120,26 @@ public class CanvasTest {
         verify(changeListener, times(1)).propertyChange(any(PropertyChangeEvent.class));
     }
 
+    @Test
+    void should_NotFirePropertyChangeEvent_When_DrawWithNullDrawables() {
+        Canvas canvas = new Canvas();
+        PropertyChangeListener changeListener = mock(PropertyChangeListener.class);
+        canvas.addPropertyChangeListener(changeListener);
+        canvas.initialise(1, 1);
+        verify(changeListener, times(1)).propertyChange(any(PropertyChangeEvent.class));
+        canvas.draw(null);
+        verifyNoMoreInteractions(changeListener);
+    }
+
+    @Test
+    void should_FirePropertyChangeEventOnce_When_DrawWithMultipleDrawables() {
+        Canvas canvas = new Canvas();
+        Drawable drawable = mock(Drawable.class);
+        PropertyChangeListener changeListener = mock(PropertyChangeListener.class);
+        canvas.addPropertyChangeListener(changeListener);
+        canvas.initialise(1, 1);
+        canvas.draw(drawable, drawable, drawable);
+        verify(changeListener, times(2)).propertyChange(any(PropertyChangeEvent.class));
+    }
+
 }

@@ -39,7 +39,9 @@ public class Raster {
     }
 
     public void setPixel(int x, int y, char c) {
-        pixels[x][y] = c;
+        if (x >= 0 && x < getWidth() && y >=0 && y < getHeight()) {
+            pixels[x][y] = c;
+        }
     }
 
 }
