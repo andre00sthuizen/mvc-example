@@ -54,7 +54,7 @@ It's easy to implement a new geometric shape by just proving a new Command imple
 | com.andreoosthuizen.view.View                     |          N/A          |          N/A          |       N/A           |           OK          |         N/A          |
 | com.andreoosthuizen.view.ViewDefault              |          OK           |          OK           |       OK            |           N/A         |         OK           |
 |                                                   |                       |                       |                     |                       |                      |
-| com.andreoosthuizen.DrawApplication               |          OK           |          OK           |       OK            |           N/A         |         OK           |
+| com.andreoosthuizen.DrawApplication               |          -            |          -            |       -             |           -           |         -            |
 | com.andreoosthuizen.Main                          |          N/A          |          N/A          |       N/A           |           N/A         |         N/A          |
 
 
