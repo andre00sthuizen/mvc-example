@@ -19,7 +19,6 @@ public class DrawRectangleCommand implements Command {
     private static final Pattern PATTERN = Pattern.compile("R\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d+)");
     private static final char DRAW_CHARACTER = 'x';
     private static final boolean KEEP_RUNNING = true;
-    private Controller controller;
 
     @Override
     public boolean canExecute(String input) {

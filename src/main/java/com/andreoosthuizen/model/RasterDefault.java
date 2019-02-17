@@ -10,12 +10,12 @@ import java.util.Arrays;
  *
  * @author Andre Oosthuizen
  */
-public class Raster2DArray implements Raster {
+public class RasterDefault implements Raster {
 
     private static final char SPACE = ' ';
     private char[][] pixels;
 
-    public Raster2DArray(int width, int height) {
+    public RasterDefault(int width, int height) {
         if (width <= 0) {
             throw new IllegalArgumentException("Width must be greater than zero");
         }

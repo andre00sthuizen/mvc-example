@@ -13,12 +13,12 @@ import java.beans.PropertyChangeListener;
  *
  * @author Andre Oosthuizen
  */
-public class DefaultController implements Controller, PropertyChangeListener {
+public class ControllerDefault implements Controller, PropertyChangeListener {
 
     private View view;
     private Canvas canvas;
 
-    public DefaultController(View view, Canvas canvas) {
+    public ControllerDefault(View view, Canvas canvas) {
         this.view = view;
         this.canvas = canvas;
         this.canvas.addPropertyChangeListener(this);

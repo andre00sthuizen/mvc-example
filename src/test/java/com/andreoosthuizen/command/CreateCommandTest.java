@@ -1,7 +1,7 @@
 package com.andreoosthuizen.command;
 
 import com.andreoosthuizen.controller.Controller;
-import com.andreoosthuizen.controller.DefaultController;
+import com.andreoosthuizen.controller.ControllerDefault;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -48,7 +48,7 @@ class CreateCommandTest {
 
     @Test
     void should_InvokeController_When_ExecuteWithInput() {
-        Controller controller = mock(DefaultController.class);
+        Controller controller = mock(ControllerDefault.class);
         CreateCommand createCommand = new CreateCommand();
         assertTrue(createCommand.execute("C 1 1", controller));
         verify(controller, times(1)).createCanvas(1, 1);

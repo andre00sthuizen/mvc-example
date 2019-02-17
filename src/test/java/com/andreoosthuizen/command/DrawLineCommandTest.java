@@ -1,7 +1,7 @@
 package com.andreoosthuizen.command;
 
 import com.andreoosthuizen.controller.Controller;
-import com.andreoosthuizen.controller.DefaultController;
+import com.andreoosthuizen.controller.ControllerDefault;
 import com.andreoosthuizen.model.Line;
 import org.junit.jupiter.api.Test;
 
@@ -61,7 +61,7 @@ class DrawLineCommandTest {
 
     @Test
     void should_InvokeControllerWithLineDrawable_When_ExecuteWithInput() {
-        Controller controller = mock(DefaultController.class);
+        Controller controller = mock(ControllerDefault.class);
         DrawLineCommand drawLineCommand = new DrawLineCommand();
         assertTrue(drawLineCommand.execute("L 1 2 1 5", controller));
         Line line = new Line(1, 2, 1, 5, 'x');

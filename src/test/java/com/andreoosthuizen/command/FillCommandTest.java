@@ -1,7 +1,7 @@
 package com.andreoosthuizen.command;
 
 import com.andreoosthuizen.controller.Controller;
-import com.andreoosthuizen.controller.DefaultController;
+import com.andreoosthuizen.controller.ControllerDefault;
 import com.andreoosthuizen.model.Fill;
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +55,7 @@ class FillCommandTest {
 
     @Test
     void should_InvokeControllerWithLineDrawable_When_ExecuteWithInput() {
-        Controller controller = mock(DefaultController.class);
+        Controller controller = mock(ControllerDefault.class);
         FillCommand fillCommand = new FillCommand();
         assertTrue(fillCommand.execute("B 1 2 o", controller));
         Fill fill = new Fill(1, 2, 'o');

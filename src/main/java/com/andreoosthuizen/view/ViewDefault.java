@@ -11,7 +11,7 @@ import java.io.PrintWriter;
  *
  * @author Andre Oosthuizen
  */
-public class ConsoleView implements View {
+public class ViewDefault implements View {
 
     private OutputStream outputStream = System.out;
 

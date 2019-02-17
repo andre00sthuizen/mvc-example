@@ -50,7 +50,7 @@ public class LineTest {
 
     @Test
     void should_CreateRasterWithPixelTopLeft_When_PaintWith0000() {
-        Raster raster = new Raster2DArray(2, 2);
+        Raster raster = new RasterDefault(2, 2);
         Line line = new Line(0, 0, 0, 0, 'x');
         line.paint(raster);
         assertEquals('x', raster.getPixel(0, 0));
@@ -61,7 +61,7 @@ public class LineTest {
 
     @Test
     void should_CreateRasterWithPixelTopRight_When_PaintWith1010() {
-        Raster raster = new Raster2DArray(2, 2);
+        Raster raster = new RasterDefault(2, 2);
         Line line = new Line(1, 0, 1, 0, 'x');
         line.paint(raster);
         assertEquals(' ', raster.getPixel(0, 0));
@@ -72,7 +72,7 @@ public class LineTest {
 
     @Test
     void should_CreateRasterWithPixelBottomLeft_When_PaintWith0101() {
-        Raster raster = new Raster2DArray(2, 2);
+        Raster raster = new RasterDefault(2, 2);
         Line line = new Line(0, 1, 0, 1, 'x');
         line.paint(raster);
         assertEquals(' ', raster.getPixel(0, 0));
@@ -83,7 +83,7 @@ public class LineTest {
 
     @Test
     void should_CreateRasterWithPixelBottomRight_When_PaintWith1111() {
-        Raster raster = new Raster2DArray(2, 2);
+        Raster raster = new RasterDefault(2, 2);
         Line line = new Line(1, 1, 1, 1, 'x');
         line.paint(raster);
         assertEquals(' ', raster.getPixel(0, 0));
@@ -94,7 +94,7 @@ public class LineTest {
 
     @Test
     void should_CreateRasterWithHorizontalPixels_When_PaintWith2131() {
-        Raster raster = new Raster2DArray(4, 3);
+        Raster raster = new RasterDefault(4, 3);
         Line line = new Line(2, 1, 3, 1, 'x');
         line.paint(raster);
         for (int i=0; i<raster.getWidth(); i++) {
@@ -110,7 +110,7 @@ public class LineTest {
 
     @Test
     void should_CreateRasterWithVerticalPixels_When_PaintWith1213() {
-        Raster raster = new Raster2DArray(3, 4);
+        Raster raster = new RasterDefault(3, 4);
         Line line = new Line(1, 2, 1, 3, 'x');
         line.paint(raster);
         for (int i=0; i<raster.getWidth(); i++) {
@@ -126,7 +126,7 @@ public class LineTest {
 
     @Test
     void should_IgnoreXPixelsThatContinueBeyondRaster_When_Paint() {
-        Raster raster = new Raster2DArray(2, 2);
+        Raster raster = new RasterDefault(2, 2);
         Line line = new Line(0, 0, 100, 0, 'x');
         line.paint(raster);
         assertEquals('x', raster.getPixel(0, 0));
@@ -137,7 +137,7 @@ public class LineTest {
 
     @Test
     void should_IgnoreXPixelsThatStartBeforeRaster_When_Paint() {
-        Raster raster = new Raster2DArray(2, 2);
+        Raster raster = new RasterDefault(2, 2);
         Line line = new Line(-100, 0, 1, 0, 'x');
         line.paint(raster);
         assertEquals('x', raster.getPixel(0, 0));
@@ -148,7 +148,7 @@ public class LineTest {
 
     @Test
     void should_IgnoreXPixelsThatAreHorizontallyOffCanvas_When_Paint() {
-        Raster raster = new Raster2DArray(2, 2);
+        Raster raster = new RasterDefault(2, 2);
         Line line = new Line(-100, 0, -1, 0, 'x');
         line.paint(raster);
         for (int i=0; i<raster.getWidth(); i++) {
@@ -160,7 +160,7 @@ public class LineTest {
 
     @Test
     void should_IgnoreXPixelsThatAreVerticallyOffCanvas_When_Paint() {
-        Raster raster = new Raster2DArray(2, 2);
+        Raster raster = new RasterDefault(2, 2);
         Line line = new Line(0, -1, 0, -1, 'x');
         line.paint(raster);
         for (int i=0; i<raster.getWidth(); i++) {
