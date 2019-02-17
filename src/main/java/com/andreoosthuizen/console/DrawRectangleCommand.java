@@ -7,8 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Draws a rectangular shape where the upper left corner is (x1,y1)
- * and the lower right corner is (x2,y2)
+ * Should create a new rectangle, whose upper left corner is (x1,y1) and lower right corner is (x2,y2).
+ * Horizontal and vertical lines will be drawn using the 'x' character.
+ * The input string should be in the following format: R x1 y1 x2 y2 where x and y are integer values
+ * e.g. R 1 2 3 4
  *
  * @author Andre Oosthuizen
  */

@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 /**
  * Terminates the application.
  * We simply return false after completing the execute method
+ * The input string should be in the following format: Q
  *
  * @author Andre Oosthuizen
  */

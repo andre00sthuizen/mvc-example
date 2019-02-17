@@ -7,7 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Draws either a vertical or horizontal line from (x1,y1) to (x2,y2)
+ * Should create a new line from (x1,y1) to (x2,y2).
+ * Currently only horizontal or vertical lines are supported.
+ * Horizontal and vertical lines will be drawn using the 'x' character.
+ * The input string should be in the following format: L x1 y1 x2 y2 where x and y are integer values
+ * e.g. L 1 2 1 4
  *
  * @author Andre Oosthuizen
  */
