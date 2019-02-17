@@ -59,7 +59,7 @@ class DrawLineCommandTest {
         DrawLineCommand drawLineCommand = new DrawLineCommand(controller);
         assertTrue(drawLineCommand.execute("L 1 2 1 5"));
         Line line = new Line(1, 2, 1, 5, 'x');
-        verify(controller, times(1)).paintDrawable(line);
+        verify(controller, times(1)).draw(line);
     }
 
 }

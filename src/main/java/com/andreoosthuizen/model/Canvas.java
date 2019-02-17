@@ -3,6 +3,7 @@ package com.andreoosthuizen.model;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.List;
 
 /**
  * Draws a framed rectangular shape with borders as indicated below
@@ -25,6 +26,15 @@ public class Canvas implements Drawable {
 
     private PropertyChangeSupport propertyChanges = new PropertyChangeSupport(this);
     private Raster raster;
+
+    public void initialise(int width, int height) {
+        if (width < 0 || height < 0) {
+            throw new IllegalArgumentException("Canvas width/height must not be less than zero");
+        }
+        this.raster = new Raster(width + 2, height + 2);
+        paint(this.raster);
+        this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "raster",null, this.raster));
+    }
 
     @Override
     public void paint(Raster raster) {
@@ -54,18 +64,17 @@ public class Canvas implements Drawable {
         return raster.getHeight() - 2;
     }
 
-    public void initialise(int width, int height) {
-        if (width < 0 || height < 0) {
-            throw new IllegalArgumentException("Canvas width/height must not be less than zero");
-        }
-        this.raster = new Raster(width + 2, height + 2);
-        paint(this.raster);
-        this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "raster",null, this.raster));
+    public Raster getRaster() {
+        return raster;
     }
 
-    public void paintDrawable(Drawable drawable) {
-        drawable.paint(this.raster);
-        this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "raster",null, this.raster));
+    public void draw(Drawable... drawables) {
+        if (drawables != null) {
+            for (Drawable drawable: drawables) {
+                drawable.paint(this.raster);
+            }
+            this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "raster",null, this.raster));
+        }
     }
 
     public void addPropertyChangeListener(PropertyChangeListener changeListener) {
@@ -74,10 +83,6 @@ public class Canvas implements Drawable {
 
     PropertyChangeListener[] getPropertyChangeListeners() {
         return propertyChanges.getPropertyChangeListeners();
-    }
-
-    Raster getRaster() {
-        return raster;
     }
 
 }

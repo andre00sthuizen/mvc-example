@@ -27,8 +27,8 @@ public class Controller implements PropertyChangeListener {
         canvas.initialise(width, height);
     }
 
-    public void paintDrawable(Drawable drawable) {
-        canvas.paintDrawable(drawable);
+    public void draw(Drawable... drawable) {
+        canvas.draw(drawable);
     }
 
     @Override
@@ -36,5 +36,4 @@ public class Controller implements PropertyChangeListener {
         Raster raster = (Raster)propertyChangeEvent.getNewValue();
         view.render(raster);
     }
-
 }

@@ -40,13 +40,10 @@ public class DrawRectangleCommand implements Command {
             int x2 = Integer.valueOf(matcher.group(3));
             int y2 = Integer.valueOf(matcher.group(4));
             Line top = new Line(x1, y1, x2, y1, DRAW_CHARACTER);
-            controller.paintDrawable(top);
             Line bottom = new Line(x1, y2, x2, y2, DRAW_CHARACTER);
-            controller.paintDrawable(bottom);
             Line left = new Line(x1, y1, x1, y2, DRAW_CHARACTER);
-            controller.paintDrawable(left);
             Line right = new Line(x2, y1, x2, y2, DRAW_CHARACTER);
-            controller.paintDrawable(right);
+            controller.draw(top, bottom, left, right);
         }
         return KEEP_RUNNING;
     }

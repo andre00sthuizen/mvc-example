@@ -39,7 +39,7 @@ public class DrawLineCommand implements Command {
             int x2 = Integer.valueOf(matcher.group(3));
             int y2 = Integer.valueOf(matcher.group(4));
             Line line = new Line(x1, y1, x2, y2, DRAW_CHARACTER);
-            controller.paintDrawable(line);
+            controller.draw(line);
         }
         return KEEP_RUNNING;
     }

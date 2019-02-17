@@ -34,8 +34,8 @@ class ControllerTest {
         View view = mock(View.class);
         Controller controller = new Controller(view, canvas);
         Drawable drawable = mock(Drawable.class);
-        controller.paintDrawable(drawable);
-        verify(canvas, times(1)).paintDrawable(drawable);
+        controller.draw(drawable);
+        verify(canvas, times(1)).draw(drawable);
     }
 
 }

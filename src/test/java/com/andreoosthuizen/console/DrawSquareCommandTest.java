@@ -59,13 +59,10 @@ class DrawSquareCommandTest {
         DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(controller);
         assertTrue(drawRectangleCommand.execute("R 1 2 3 4"));
         Line top = new Line(1, 2, 3, 2, 'x');
-        verify(controller, times(1)).paintDrawable(top);
         Line bottom = new Line(1, 4, 3, 4, 'x');
-        verify(controller, times(1)).paintDrawable(bottom);
         Line left = new Line(1, 2, 1, 4, 'x');
-        verify(controller, times(1)).paintDrawable(left);
         Line right = new Line(3, 2, 3, 4, 'x');
-        verify(controller, times(1)).paintDrawable(right);
+        verify(controller, times(1)).draw(top, bottom, left, right);
     }
 
 }
