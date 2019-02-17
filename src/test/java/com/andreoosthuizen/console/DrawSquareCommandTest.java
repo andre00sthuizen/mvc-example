@@ -12,51 +12,52 @@ class DrawSquareCommandTest {
 
     @Test
     void should_ReturnFalse_When_InputIsEmptyString() {
-        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(null);
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
         assertFalse(drawRectangleCommand.canExecute(""));
     }
 
     @Test
     void should_ReturnFalse_When_InputIsNull() {
-        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(null);
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
         assertFalse(drawRectangleCommand.canExecute(null));
     }
 
 
     @Test
     void should_ReturnFalse_When_InputMatchesFirstLetterWithNoX1AndNoY1AndNoX2AndNoY2() {
-        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(null);
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
         assertFalse(drawRectangleCommand.canExecute("R"));
     }
 
     @Test
     void should_ReturnFalse_When_InputMatchesFirstLetterWithX1AndNoY1AndNoX2AndNoY2() {
-        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(null);
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
         assertFalse(drawRectangleCommand.canExecute("R 1"));
     }
 
     @Test
     void should_ReturnFalse_When_InputMatchesFirstLetterWithX1AndY1AndNoX2AndNoY2() {
-        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(null);
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
         assertFalse(drawRectangleCommand.canExecute("R 1 2"));
     }
 
     @Test
     void should_ReturnFalse_When_InputMatchesFirstLetterWithX1AndY1AndX2AndNoY2() {
-        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(null);
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
         assertFalse(drawRectangleCommand.canExecute("R 1 2 3"));
     }
 
     @Test
     void should_ReturnTrue_When_InputMatchesPattern() {
-        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(null);
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
         assertTrue(drawRectangleCommand.canExecute("R 1 2 3 4"));
     }
 
     @Test
     void should_InvokeControllerWith4LineDrawables_When_ExecuteWithInput() {
         Controller controller = mock(Controller.class);
-        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand(controller);
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
+        drawRectangleCommand.init(controller);
         assertTrue(drawRectangleCommand.execute("R 1 2 3 4"));
         Line top = new Line(1, 2, 3, 2, 'x');
         Line bottom = new Line(1, 4, 3, 4, 'x');

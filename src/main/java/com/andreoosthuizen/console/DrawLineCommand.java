@@ -22,7 +22,8 @@ public class DrawLineCommand implements Command {
     private static final boolean KEEP_RUNNING = true;
     private Controller controller;
 
-    public DrawLineCommand(Controller controller) {
+    @Override
+    public void init(Controller controller) {
         this.controller = controller;
     }
 

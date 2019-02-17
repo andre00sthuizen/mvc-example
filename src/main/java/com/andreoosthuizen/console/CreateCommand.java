@@ -18,7 +18,8 @@ public class CreateCommand implements Command {
     private static final boolean KEEP_RUNNING = true;
     private Controller controller;
 
-    public CreateCommand(Controller controller) {
+    @Override
+    public void init(Controller controller) {
         this.controller = controller;
     }
 

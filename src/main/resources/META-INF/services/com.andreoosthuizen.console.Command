@@ -1,0 +1,5 @@
+com.andreoosthuizen.console.CreateCommand
+com.andreoosthuizen.console.DrawLineCommand
+com.andreoosthuizen.console.DrawRectangleCommand
+com.andreoosthuizen.console.FillCommand
+com.andreoosthuizen.console.QuitCommand

@@ -21,7 +21,8 @@ public class DrawRectangleCommand implements Command {
     private static final boolean KEEP_RUNNING = true;
     private Controller controller;
 
-    public DrawRectangleCommand(Controller controller) {
+    @Override
+    public void init(Controller controller) {
         this.controller = controller;
     }
 

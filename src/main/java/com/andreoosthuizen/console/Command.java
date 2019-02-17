@@ -1,6 +1,10 @@
 package com.andreoosthuizen.console;
 
+import com.andreoosthuizen.controller.Controller;
+
 public interface Command {
+
+    void init(Controller controller);
 
     /**
      * Check if input String can be handled by this command

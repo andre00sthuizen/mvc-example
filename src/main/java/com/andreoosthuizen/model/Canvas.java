@@ -3,7 +3,6 @@ package com.andreoosthuizen.model;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.List;
 
 /**
  * Draws a framed rectangular shape with borders as indicated below

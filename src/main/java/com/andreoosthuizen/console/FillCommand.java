@@ -2,7 +2,6 @@ package com.andreoosthuizen.console;
 
 import com.andreoosthuizen.controller.Controller;
 import com.andreoosthuizen.model.Fill;
-import com.andreoosthuizen.model.Line;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,7 +20,8 @@ public class FillCommand implements Command {
     private static final boolean KEEP_RUNNING = true;
     private Controller controller;
 
-    public FillCommand(Controller controller) {
+    @Override
+    public void init(Controller controller) {
         this.controller = controller;
     }
 

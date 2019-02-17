@@ -2,7 +2,8 @@ package com.andreoosthuizen.view;
 
 import com.andreoosthuizen.model.Raster;
 
-import java.io.*;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 
 /**
  * A view implementation that, by default, renders a Raster to System.out

@@ -1,5 +1,7 @@
 package com.andreoosthuizen.console;
 
+import com.andreoosthuizen.controller.Controller;
+
 import java.util.regex.Pattern;
 
 /**
@@ -13,6 +15,11 @@ public class QuitCommand implements Command {
 
     private static final Pattern PATTERN = Pattern.compile("Q");
     private static final boolean STOP_RUNNING = false;
+
+    @Override
+    public void init(Controller controller) {
+
+    }
 
     @Override
     public boolean canExecute(String input) {

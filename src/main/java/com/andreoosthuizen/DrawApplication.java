@@ -1,5 +1,7 @@
-package com.andreoosthuizen.console;
+package com.andreoosthuizen;
 
+import com.andreoosthuizen.console.Command;
+import com.andreoosthuizen.console.CommandFactory;
 import com.andreoosthuizen.controller.Controller;
 import com.andreoosthuizen.model.Canvas;
 import com.andreoosthuizen.view.ConsoleView;
@@ -7,11 +9,12 @@ import com.andreoosthuizen.view.ConsoleView;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class ConsoleApplication implements Runnable {
+/**
+ * Run with {@link Main}
+ */
+public class DrawApplication implements Runnable {
 
     private OutputStream outputStream = System.out;
     private InputStream inputStream = System.in;
@@ -19,39 +22,21 @@ public class ConsoleApplication implements Runnable {
     @Override
     public void run() {
         Controller controller = new Controller(new ConsoleView(), new Canvas());
-        List<Command> availableCommands = getAvailableCommands(controller);
         Scanner scanner = new Scanner(inputStream);
         PrintStream printStream = new PrintStream(outputStream);
         boolean run = true;
         while (run) {
             printStream.print("enter command: ");
             String input = scanner.nextLine();
-            Command command = getCommand(input, availableCommands);
+            Command command = CommandFactory.getInstance().getCommand(input);
             if (command != null) {
+                command.init(controller);
                 run = command.execute(input);
             } else {
                 printHelpMessage();
             }
             printStream.println();
         }
-    }
-
-    private List<Command> getAvailableCommands(Controller controller) {
-        List<Command> availableCommands = new ArrayList<>(4);
-        availableCommands.add(new CreateCommand(controller));
-        availableCommands.add(new DrawLineCommand(controller));
-        availableCommands.add(new DrawRectangleCommand(controller));
-        availableCommands.add(new QuitCommand());
-        return availableCommands;
-    }
-
-    private Command getCommand(String input, List<Command> availableCommands) {
-        for (Command command: availableCommands) {
-            if (command.canExecute(input)) {
-                return command;
-            }
-        }
-        return null;
     }
 
     private void printHelpMessage() {
