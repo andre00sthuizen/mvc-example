@@ -8,7 +8,7 @@ public class FillTest {
 
     @Test
     void should_IgnoreBucketFill_When_XBelowBound() {
-        Raster raster = new Raster(1, 1);
+        Raster raster = new Raster2DArray(1, 1);
         Fill fill = new Fill(-1, 0, 'o');
         fill.paint(raster);
         assertEquals(' ', raster.getPixel(0, 0));
@@ -16,7 +16,7 @@ public class FillTest {
 
     @Test
     void should_IgnoreBucketFill_When_XAboveBound() {
-        Raster raster = new Raster(1, 1);
+        Raster raster = new Raster2DArray(1, 1);
         Fill fill = new Fill(3, 0, 'o');
         fill.paint(raster);
         assertEquals(' ', raster.getPixel(0, 0));
@@ -24,7 +24,7 @@ public class FillTest {
 
     @Test
     void should_IgnoreBucketFill_When_YBelowBound() {
-        Raster raster = new Raster(1, 1);
+        Raster raster = new Raster2DArray(1, 1);
         Fill fill = new Fill(0, -1, 'o');
         fill.paint(raster);
         assertEquals(' ', raster.getPixel(0, 0));
@@ -32,7 +32,7 @@ public class FillTest {
 
     @Test
     void should_IgnoreBucketFill_When_YAboveBound() {
-        Raster raster = new Raster(1, 1);
+        Raster raster = new Raster2DArray(1, 1);
         Fill fill = new Fill(0, 3, 'o');
         fill.paint(raster);
         assertEquals(' ', raster.getPixel(0, 0));
@@ -40,7 +40,7 @@ public class FillTest {
 
     @Test
     void should_Fill1By1RasterWithChar_When_BucketFillPaint() {
-        Raster raster = new Raster(1, 1);
+        Raster raster = new Raster2DArray(1, 1);
         Fill fill = new Fill(0, 0, 'o');
         fill.paint(raster);
         assertEquals('o', raster.getPixel(0, 0));
@@ -48,7 +48,7 @@ public class FillTest {
 
     @Test
     void should_IgnoreFill1By1RasterWithChar_When_BucketFillPaintOnSameChar() {
-        Raster raster = new Raster(1, 1);
+        Raster raster = new Raster2DArray(1, 1);
         Fill fill = new Fill(0, 0, 'o');
         fill.paint(raster);
         assertEquals('o', raster.getPixel(0, 0));
@@ -81,7 +81,7 @@ public class FillTest {
 
     @Test
     void should_Return_When_TargetCharacterIsEqualToReplacementCharacter() {
-        Raster raster = new Raster(1, 1);
+        Raster2DArray raster = new Raster2DArray(1, 1);
         raster.setPixel(0, 0, 'o');
         Fill fill = new Fill(0, 0, 'o');
         fill.paint(raster);
@@ -90,7 +90,7 @@ public class FillTest {
 
     @Test
     void should__Fill1By1RasterWithChar_When_PixelCharacterIsNotEqualToBlankCharacter() {
-        Raster raster = new Raster(1, 1);
+        Raster2DArray raster = new Raster2DArray(1, 1);
         raster.setPixel(0, 0, 'o');
         Fill fill = new Fill(0, 0, 'x');
         fill.paint(raster);

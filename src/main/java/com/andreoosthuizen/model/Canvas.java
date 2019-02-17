@@ -30,7 +30,7 @@ public class Canvas implements Drawable {
         if (width < 0 || height < 0) {
             throw new IllegalArgumentException("Canvas width/height must not be less than zero");
         }
-        this.raster = new Raster(width + 2, height + 2);
+        this.raster = new Raster2DArray(width + 2, height + 2);
         paint(this.raster);
         this.propertyChanges.firePropertyChange(new PropertyChangeEvent(this, "raster",null, this.raster));
     }

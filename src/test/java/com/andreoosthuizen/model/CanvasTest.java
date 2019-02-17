@@ -127,7 +127,7 @@ public class CanvasTest {
         canvas.addPropertyChangeListener(changeListener);
         canvas.initialise(1, 1);
         verify(changeListener, times(1)).propertyChange(any(PropertyChangeEvent.class));
-        canvas.draw(null);
+        canvas.draw((Drawable[]) null);
         verifyNoMoreInteractions(changeListener);
     }
 

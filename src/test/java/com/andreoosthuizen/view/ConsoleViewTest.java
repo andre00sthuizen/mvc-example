@@ -1,6 +1,6 @@
 package com.andreoosthuizen.view;
 
-import com.andreoosthuizen.model.Raster;
+import com.andreoosthuizen.model.Raster2DArray;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -38,7 +38,7 @@ public class ConsoleViewTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ConsoleView consoleView = new ConsoleView();
         consoleView.setOutputStream(outputStream);
-        Raster raster = new Raster(1, 1);
+        Raster2DArray raster = new Raster2DArray(1, 1);
         raster.setPixel(0, 0, 'X');
         consoleView.render(raster);
         assertEquals("X\n", outputStream.toString());
@@ -49,7 +49,7 @@ public class ConsoleViewTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ConsoleView consoleView = new ConsoleView();
         consoleView.setOutputStream(outputStream);
-        Raster raster = new Raster(3, 2);
+        Raster2DArray raster = new Raster2DArray(3, 2);
         raster.setPixel(0, 0, 'X');
         raster.setPixel(2, 1, 'X');
         consoleView.render(raster);
