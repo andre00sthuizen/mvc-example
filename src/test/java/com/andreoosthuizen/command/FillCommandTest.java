@@ -22,6 +22,11 @@ class FillCommandTest {
         assertFalse(fillCommand.canExecute(null));
     }
 
+    @Test
+    void should_ReturnTrue_When_WrongInputExecuted() {
+        FillCommand fillCommand = new FillCommand();
+        assertTrue(fillCommand.execute("invalid"));
+    }
 
     @Test
     void should_ReturnFalse_When_InputMatchesFirstLetterWithNoX1AndNoY1AndNoChar() {

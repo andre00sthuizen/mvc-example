@@ -21,6 +21,11 @@ class CreateCommandTest {
         assertFalse(createCommand.canExecute(null));
     }
 
+    @Test
+    void should_ReturnTrue_When_WrongInputExecuted() {
+        CreateCommand createCommand = new CreateCommand();
+        assertTrue(createCommand.execute("invalid"));
+    }
 
     @Test
     void should_ReturnFalse_When_InputMatchesFirstLetterWithNoWidthAndHeight() {

@@ -27,7 +27,18 @@ public class LineTest {
     void should_ReturnTrue_When_TwoIdenticalLinesCompared() {
         Line line1 = new Line(1, 2, 3, 2, 'x');
         Line line2 = new Line(1, 2, 3, 2, 'x');
+        assertTrue(line1.equals(line1));
         assertTrue(line1.equals(line2));
+    }
+
+    @Test
+    void should_ReturnFalse_When_TwoFillsComparedOnsIsNull() {
+        Line line1 = new Line(1, 2, 3, 2, 'x');
+        Line line2 = new Line(1, 2, 1, 3, 'y');
+        assertFalse(line1.equals(null));
+        assertFalse(line2.equals(null));
+        assertFalse(line1.equals(line2));
+        assertFalse(line1.equals(new String()));
     }
 
     @Test

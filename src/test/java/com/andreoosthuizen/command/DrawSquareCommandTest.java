@@ -22,6 +22,11 @@ class DrawSquareCommandTest {
         assertFalse(drawRectangleCommand.canExecute(null));
     }
 
+    @Test
+    void should_ReturnTrue_When_WrongInputExecuted() {
+        DrawRectangleCommand drawRectangleCommand = new DrawRectangleCommand();
+        assertTrue(drawRectangleCommand.execute("invalid"));
+    }
 
     @Test
     void should_ReturnFalse_When_InputMatchesFirstLetterWithNoX1AndNoY1AndNoX2AndNoY2() {

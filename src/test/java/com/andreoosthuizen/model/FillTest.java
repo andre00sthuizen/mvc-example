@@ -2,8 +2,7 @@ package com.andreoosthuizen.model;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FillTest {
 
@@ -59,7 +58,18 @@ public class FillTest {
     void should_ReturnTrue_When_TwoIdenticalFillsCompared() {
         Fill fill1 = new Fill(1, 2, 'x');
         Fill fill2 = new Fill(1, 2, 'x');
+        assertTrue(fill1.equals(fill1));
         assertTrue(fill1.equals(fill2));
+    }
+
+    @Test
+    void should_ReturnFalse_When_TwoFillsComparedOnsIsNull() {
+        Fill fill1 = new Fill(1, 2, 'x');
+        Fill fill2 = new Fill(2, 3, 'y');
+        assertFalse(fill1.equals(null));
+        assertFalse(fill2.equals(null));
+        assertFalse(fill1.equals(fill2));
+        assertFalse(fill1.equals(new String()));
     }
 
     @Test
@@ -67,6 +77,24 @@ public class FillTest {
         Fill fill1 = new Fill(1, 2, 'x');
         Fill fill2 = new Fill(1, 2, 'x');
         assertTrue(fill1.hashCode() == fill2.hashCode());
+    }
+
+    @Test
+    void should_Return_When_TargetCharacterIsEqualToReplacementCharacter() {
+        Raster raster = new Raster(1, 1);
+        raster.setPixel(0, 0, 'o');
+        Fill fill = new Fill(0, 0, 'o');
+        fill.paint(raster);
+        assertEquals('o', raster.getPixel(0, 0));
+    }
+
+    @Test
+    void should__Fill1By1RasterWithChar_When_PixelCharacterIsNotEqualToBlankCharacter() {
+        Raster raster = new Raster(1, 1);
+        raster.setPixel(0, 0, 'o');
+        Fill fill = new Fill(0, 0, 'x');
+        fill.paint(raster);
+        assertEquals('x', raster.getPixel(0, 0));
     }
 
 }

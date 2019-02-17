@@ -22,6 +22,11 @@ class DrawLineCommandTest {
         assertFalse(drawLineCommand.canExecute(null));
     }
 
+    @Test
+    void should_ReturnTrue_When_WrongInputExecuted() {
+        DrawLineCommand drawLineCommand = new DrawLineCommand();
+        assertTrue(drawLineCommand.execute("invalid"));
+    }
 
     @Test
     void should_ReturnFalse_When_InputMatchesFirstLetterWithNoX1AndNoY1AndNoX2AndNoY2() {
