@@ -1,4 +1,4 @@
-package com.andreoosthuizen.console;
+package com.andreoosthuizen.command;
 
 import org.junit.jupiter.api.Test;
 

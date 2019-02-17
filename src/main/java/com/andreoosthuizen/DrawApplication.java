@@ -1,7 +1,7 @@
 package com.andreoosthuizen;
 
-import com.andreoosthuizen.console.Command;
-import com.andreoosthuizen.console.CommandFactory;
+import com.andreoosthuizen.command.Command;
+import com.andreoosthuizen.command.CommandFactory;
 import com.andreoosthuizen.controller.Controller;
 import com.andreoosthuizen.model.Canvas;
 import com.andreoosthuizen.view.ConsoleView;

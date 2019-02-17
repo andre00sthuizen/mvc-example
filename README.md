@@ -1,20 +1,21 @@
 # Requirements:
 * Java 8 or higher
 * Maven to build
-
-The application should be run using the <code>com.andreoosthuizen.Main</code> class.
+* Run <code>mvn clean install</code> inside the project.
+* Run <code>java -jar ./target/assignment1-1.0.0.jar</code>
+* Alternatively, the entry point of the application is the <code>com.andreoosthuizen.Main</code> class which can also be run from an IDE.
 
 # Assumptions:
 * I minimised the use of 3rd party libraries to demonstrate competency for this assignment.
 * Some helpful libraries that could have been used:
    - [Spring Shell](https://projects.spring.io/spring-shell/)
    - [Spring MVC](https://spring.io/projects/spring-framework)
-* When the input coordinates are out bounds they are ignored and a best effort render is made.
+* When the input coordinates are out bounds they are ignored and a best effort is made to render.
 
 # Test Coverage
 A TDD approach was followed which resulted in good code coverage.
 
-TODO Show Reports
+Test coverage reports are available in <code>${project.dir}/target/site/jacoco/index.html</code>
  
 # Design
 The <code>Main</code> class starts a <code>ConsoleApplication</code> in a thread and listens for user input.

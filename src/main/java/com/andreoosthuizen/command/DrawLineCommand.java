@@ -1,4 +1,4 @@
-package com.andreoosthuizen.console;
+package com.andreoosthuizen.command;
 
 import com.andreoosthuizen.controller.Controller;
 import com.andreoosthuizen.model.Line;
@@ -7,16 +7,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Should create a new rectangle, whose upper left corner is (x1,y1) and lower right corner is (x2,y2).
+ * Should create a new line from (x1,y1) to (x2,y2).
+ * Currently only horizontal or vertical lines are supported.
  * Horizontal and vertical lines will be drawn using the 'x' character.
- * The input string should be in the following format: R x1 y1 x2 y2 where x and y are integer values
- * e.g. R 1 2 3 4
+ * The input string should be in the following format: L x1 y1 x2 y2 where x and y are integer values
+ * e.g. L 1 2 1 4
  *
  * @author Andre Oosthuizen
  */
-public class DrawRectangleCommand implements Command {
+public class DrawLineCommand implements Command {
 
-    private static final Pattern PATTERN = Pattern.compile("R\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d+)");
+    private static final Pattern PATTERN = Pattern.compile("L\\s(\\d+)\\s(\\d+)\\s(\\d+)\\s(\\d+)");
     private static final char DRAW_CHARACTER = 'x';
     private static final boolean KEEP_RUNNING = true;
     private Controller controller;
@@ -42,11 +43,8 @@ public class DrawRectangleCommand implements Command {
             int y1 = Integer.valueOf(matcher.group(2));
             int x2 = Integer.valueOf(matcher.group(3));
             int y2 = Integer.valueOf(matcher.group(4));
-            Line top = new Line(x1, y1, x2, y1, DRAW_CHARACTER);
-            Line bottom = new Line(x1, y2, x2, y2, DRAW_CHARACTER);
-            Line left = new Line(x1, y1, x1, y2, DRAW_CHARACTER);
-            Line right = new Line(x2, y1, x2, y2, DRAW_CHARACTER);
-            controller.draw(top, bottom, left, right);
+            Line line = new Line(x1, y1, x2, y2, DRAW_CHARACTER);
+            controller.draw(line);
         }
         return KEEP_RUNNING;
     }
